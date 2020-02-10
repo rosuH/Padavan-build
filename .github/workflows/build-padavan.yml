@@ -2,8 +2,8 @@
 name: Build Padavan
 
 on: 
-  release:
-    types: [published]
+  watch:
+    types: [started]
   push:
     tags:
     - 'v*'
