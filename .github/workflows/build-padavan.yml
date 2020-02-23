@@ -87,14 +87,6 @@ jobs:
         sudo ./clear_tree
         sudo ./build_firmware_bkye $TNAME
         sudo mv -f images/*.trx /opt/images/
-        
-    - name: Get current time
-      uses: gerred/actions/current-time@master
-      id: current-time
-    - name: Use current time
-      env:
-       TIME: "${{ steps.current-time.outputs.time }}"
-      run: echo $TIME
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
@@ -107,9 +99,17 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: $TIME
-        release_name: K2P-Padavan-packages-$TIME
+        release_name: K2P-Padavan
         body: ""
         draft: false
-        prerelease: false     
+        prerelease: false  
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+       upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+       asset_path: /opt/images/K2P_3.4.3.9-099.trx
+       asset_name: K2P_3.4.3.9-099.trx
   
