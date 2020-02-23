@@ -89,7 +89,7 @@ jobs:
         sudo mv -f images/*.trx /opt/images/
     - name: Get current time
       id: current-time
-      run: echo ::set-env name=DATE::$(date '+%Y-%m-%d')"
+      run: echo "::set-env name=DATE::$(date '+%Y-%m-%d')"
 #     - name : Upload packages
 #       uses: actions/upload-artifact@master
 #       if: always()
