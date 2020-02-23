@@ -2,6 +2,8 @@
 name: Build Padavan
 
 on: 
+   watch:
+    types: [started]
    schedule:
     - cron:  '0 2 * * 5'
 jobs:
