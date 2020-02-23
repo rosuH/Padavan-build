@@ -94,6 +94,7 @@ jobs:
     - name: Use current time
       env:
        TIME: "${{ steps.current-time.outputs.time }}"
+      run: echo $TIME
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
