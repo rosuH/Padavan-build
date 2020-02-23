@@ -88,8 +88,8 @@ jobs:
         sudo ./build_firmware_bkye $TNAME
         sudo mv -f images/*.trx /opt/images/
     - name: Get current time
-      uses: gerred/actions/current-time@master
       id: current-time
+      run: echo ::set-env name=DATE::$(date '+%Y-%m-%d')"
 #     - name : Upload packages
 #       uses: actions/upload-artifact@master
 #       if: always()
@@ -102,9 +102,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ steps.current-time.outputs.time }}
-        release_name: K2P-Padavan-${{ steps.current-time.outputs.time }}
-        body: ${{ github.ref }}
+        tag_name: ${{ env.DATE }}
+        release_name: K2P-Padavan-${{ env.DATE }}
+        body: ""
         draft: false
         prerelease: false  
     - name: Upload Release Asset
