@@ -91,7 +91,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: K2P-Padavan-packages-$TIME
+        name: K2P-Padavan-packages
         path: /opt/images
     - name: Create Release
       id: create_release
@@ -99,6 +99,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
+        tag: ${{ github.ref }}
         release_name: K2P-Padavan
         body: ""
         draft: false
