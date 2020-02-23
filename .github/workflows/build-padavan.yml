@@ -3,6 +3,8 @@ name: Build Padavan
 
 on: 
    push:
+    branches:
+      - master
    watch:
     types: [started]
    schedule:
