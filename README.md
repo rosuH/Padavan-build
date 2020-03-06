@@ -24,6 +24,8 @@ UI 界面直接设置即可。
 ref:
 - [dns list](https://www.ip.cn/dns.html)
 
+`cat /etc/storage/smartdns.conf`:
+
 ```conf
 server-name smartdns
 bind :6053
